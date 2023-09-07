@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  webfrontend:
+    image: ${DOCKER_REGISTRY-}webfrontend
+    build:
+      context: .
+      dockerfile: WebFrontEnd/Dockerfile
+
+  webapi:
+    image: ${DOCKER_REGISTRY-}webapi
+    build:
+      context: .
+      dockerfile: WebApi/Dockerfile
+
+  redis:
+   image: redis
+
+  SqlServerDb:
+   container_name: SqlServerContainer
+   image: mcr.microsoft.com/mssql/server:2022-latest
+   ports:
+      - 1433:1433
+   volumes:
+      - sql-data2:/var/opt/mssql
+   environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=awsVamMdK4Q49t8d
+ 
+volumes:
+  sql-data2:

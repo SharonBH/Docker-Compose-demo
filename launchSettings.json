@@ -1,0 +1,50 @@
+{
+  "profiles": {
+    "Start Redis": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "redis": "StartWithoutDebugging",
+        "webapi": "DoNotStart",
+        "webfrontend": "DoNotStart",
+        "SqlServerDb": "DoNotStart"
+      }
+    },
+    "Start My Services": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "composeLaunchAction": "LaunchBrowser",
+      "composeLaunchServiceName": "webfrontend",
+      "composeLaunchUrl": "{Scheme}://localhost:{ServicePort}",
+      "serviceActions": {
+        "redis": "DoNotStart",
+        "webapi": "StartDebugging",
+        "webfrontend": "StartDebugging",
+        "SqlServerDb": "DoNotStart"
+      }
+    },
+    "Start All": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "composeLaunchAction": "LaunchBrowser",
+      "composeLaunchServiceName": "webfrontend",
+      "composeLaunchUrl": "{Scheme}://localhost:{ServicePort}",
+      "serviceActions": {
+        "redis": "StartWithoutDebugging",
+        "webapi": "StartDebugging",
+        "webfrontend": "StartDebugging",
+        "SqlServerDb": "StartWithoutDebugging"
+      }
+    },
+    "Start SQLDB": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "redis": "DoNotStart",
+        "SqlServerDb": "StartWithoutDebugging",
+        "webapi": "DoNotStart",
+        "webfrontend": "DoNotStart"
+      }
+    }
+  }
+}
